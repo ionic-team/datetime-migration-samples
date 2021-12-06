@@ -1,0 +1,18 @@
+ion-text {
+  color: var(--ion-text-color);
+}
+
+ion-text.placeholder {
+  color: var(--ion-color-step-400, #999999);
+}
+
+.datetime-modal {
+  --border-radius: 8px;
+  --width: 325px;
+  --height: 434px;
+}
+
+ion-datetime {
+  width: 325px;
+  height: 434px;
+}

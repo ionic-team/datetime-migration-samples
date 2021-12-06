@@ -1,7 +1,30 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonDatetime } from '@ionic/react';
+import { useEffect, useState } from 'react';
+import { 
+  IonContent, 
+  IonHeader, 
+  IonPage, 
+  IonTitle, 
+  IonToolbar, 
+  IonItem, 
+  IonLabel, 
+  IonDatetime, 
+  IonModal, 
+  IonText
+} from '@ionic/react';
+import { format, parseISO } from 'date-fns';
+
 import './Home.css';
 
 const Home: React.FC = () => {
+  const [formattedDate, setFormattedDate] = useState<string>();
+  const [dateValue, setDateValue] = useState<string>();
+    
+    useEffect(() => {
+      if (dateValue === undefined) { return; }
+      console.log(dateValue)
+      setFormattedDate(format(parseISO(dateValue!), 'MMM d, yyyy'))
+    }, [dateValue]);
+  
   return (
     <IonPage>
       <IonHeader>
@@ -15,12 +38,24 @@ const Home: React.FC = () => {
             <IonTitle size="large">Blank</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonItem>
+        <IonItem button={true} id="open-datetime">
           <IonLabel>Birthday</IonLabel>
-          <IonDatetime
-            displayFormat="MM/DD/YYYY"
-            placeholder="Select a date"
-          ></IonDatetime>
+          
+          { formattedDate === undefined && <IonText class="placeholder">Select a date</IonText> }
+          { formattedDate !== undefined && <IonText>{ formattedDate }</IonText> }
+          
+          {/* See styles in Home.css */}
+          <IonModal class="datetime-modal" trigger="open-datetime">
+            <IonContent>
+              <IonDatetime
+                value={dateValue}
+                showDefaultButtons={true}
+                onIonChange={(ev: any) => {
+                  setDateValue(ev.detail.value);
+                }}
+              ></IonDatetime>
+            </IonContent>
+          </IonModal>
         </IonItem>
       </IonContent>
     </IonPage>

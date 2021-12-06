@@ -1,0 +1,7 @@
+ion-text {
+  color: var(--ion-text-color);
+}
+
+ion-text.placeholder {
+  color: var(--ion-color-step-400, #999999);
+}

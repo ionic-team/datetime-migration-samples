@@ -13,11 +13,23 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-item>
+  <ion-item [button]="true" id="open-datetime">
     <ion-label>Birthday</ion-label>
-    <ion-datetime
-      displayFormat="MM/DD/YYYY"
-      placeholder="Select a date"
-    ></ion-datetime>
+
+    <ion-text class="placeholder" *ngIf="formattedDate === undefined">Select a date</ion-text>
+    <ion-text *ngIf="formattedDate !== undefined">{{ formattedDate }}</ion-text>
+
+    <!-- See styles in global.scss -->
+    <ion-modal class="datetime-modal" trigger="open-datetime">
+      <ng-template>
+        <ion-content>
+          <ion-datetime
+            [(ngModel)]="dateValue"
+            (ionChange)="formatDate()"
+            [showDefaultButtons]="true"
+          ></ion-datetime>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </ion-item>
 </ion-content>

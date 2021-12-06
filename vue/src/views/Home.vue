@@ -13,12 +13,22 @@
         </ion-toolbar>
       </ion-header>
   
-      <ion-item>
+      <ion-item :button="true" id="open-datetime">
         <ion-label>Birthday</ion-label>
-        <ion-datetime
-          display-format="MM/DD/YYYY"
-          placeholder="Select a date"
-        ></ion-datetime>
+        
+        <ion-text class="placeholder" v-if="formattedDate === undefined">Select a date</ion-text>
+        <ion-text v-if="formattedDate !== undefined">{{ formattedDate }}</ion-text>
+        
+        <!-- See styles in global.css -->
+        <ion-modal class="datetime-modal" trigger="open-datetime">
+          <ion-content>
+            <ion-datetime
+              v-model="dateValue"
+              :ionChange="formatDate()"
+              :show-default-buttons="true"
+            ></ion-datetime>
+          </ion-content>
+        </ion-modal>
       </ion-item>
     </ion-content>
   </ion-page>
@@ -33,9 +43,11 @@ import {
   IonToolbar,
   IonItem,
   IonLabel,
-  IonDatetime
+  IonDatetime,
+  IonModal
 } from '@ionic/vue';
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+import { format, parseISO } from 'date-fns';
 
 export default defineComponent({
   name: 'Home',
@@ -47,7 +59,32 @@ export default defineComponent({
     IonToolbar,
     IonItem,
     IonLabel,
-    IonDatetime
+    IonDatetime,
+    IonModal
+  },
+  setup() {
+    const formattedDate = ref();
+    const dateValue = ref();
+    
+    const formatDate = () => {
+      formattedDate.value = format(parseISO(dateValue.value), 'MMM d, yyyy');
+    }
+    
+    return {
+      dateValue,
+      formattedDate,
+      formatDate
+    }
   }
 });
 </script>
+
+<style scoped>
+ion-text {
+  color: var(--ion-text-color);
+}
+
+ion-text.placeholder {
+  color: var(--ion-color-step-400, #999999);
+}
+</style>

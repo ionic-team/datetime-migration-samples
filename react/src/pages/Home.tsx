@@ -21,8 +21,10 @@ const Home: React.FC = () => {
     
     useEffect(() => {
       if (dateValue === undefined) { return; }
-      console.log(dateValue)
-      setFormattedDate(format(parseISO(dateValue!), 'MMM d, yyyy'))
+      
+      const formattedValue = format(parseISO(dateValue!), 'MMM d, yyyy');
+      console.log('abc',formattedValue)
+      setFormattedDate(formattedValue)
     }, [dateValue]);
   
   return (
@@ -41,8 +43,7 @@ const Home: React.FC = () => {
         <IonItem button={true} id="open-datetime">
           <IonLabel>Birthday</IonLabel>
           
-          { formattedDate === undefined && <IonText class="placeholder">Select a date</IonText> }
-          { formattedDate !== undefined && <IonText>{ formattedDate }</IonText> }
+          { formattedDate !== undefined ? <IonText>{ formattedDate }</IonText> : <IonText class="placeholder">Select a date</IonText>}
           
           {/* See styles in Home.css */}
           <IonModal class="datetime-modal" trigger="open-datetime">

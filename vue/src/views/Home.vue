@@ -16,7 +16,6 @@
       <ion-item>
         <ion-label>Birthday</ion-label>
         <ion-datetime
-          display-format="MM/DD/YYYY"
           placeholder="Select a date"
         ></ion-datetime>
       </ion-item>

@@ -18,7 +18,6 @@ const Home: React.FC = () => {
         <IonItem>
           <IonLabel>Birthday</IonLabel>
           <IonDatetime
-            displayFormat="MM/DD/YYYY"
             placeholder="Select a date"
           ></IonDatetime>
         </IonItem>

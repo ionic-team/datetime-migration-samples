@@ -12,43 +12,12 @@
           <ion-title size="large">Blank</ion-title>
         </ion-toolbar>
       </ion-header>
-    
-      <ion-item
-        :button="true"
-        :detail="false" 
-        @click="openDatetime()"
-      >
-        <ion-label>Click to open <code>ion-datetime</code></ion-label>
-      </ion-item>
+  
       <ion-item>
-        <ion-label>Default</ion-label>
-        <ion-datetime
-          ref="datetimeRef"
-          placeholder="Date Placeholder"
-        ></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label>Custom Month/Day Names</ion-label>
-        <ion-datetime
-          display-format="DDDD, MMMM DD, YYYY"
-          picker-format="DDDD MMM DD YYYY"
-          :month-names="['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']"
-          :month-short-names="['enero', 'feb', 'marzo', 'abr', 'mayo', 'jun', 'jul', 'agosto', 'sept', 'oct', 'nov', 'dic']"
-          :day-names="['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueve', 'Viernes', 'Sabado']"
-          :day-short-names="['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa']"
-        ></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label>Custom Text/Placeholder</ion-label>
-        <ion-datetime
-          class="custom"
-          placeholder="I am purple"
-        ></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label>Custom Display Format</ion-label>
+        <ion-label>Birthday</ion-label>
         <ion-datetime
           display-format="MM/DD/YYYY"
+          placeholder="Select a date"
         ></ion-datetime>
       </ion-item>
     </ion-content>
@@ -66,7 +35,7 @@ import {
   IonLabel,
   IonDatetime
 } from '@ionic/vue';
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'Home',
@@ -79,21 +48,6 @@ export default defineComponent({
     IonItem,
     IonLabel,
     IonDatetime
-  },
-  setup() {
-    const datetimeRef = ref();
-    
-    const openDatetime = () => {
-      console.log(datetimeRef.value)
-      if (!datetimeRef.value) { return; }
-      
-      datetimeRef.value.$el.open();
-    }
-    
-    return {
-      datetimeRef,
-      openDatetime
-    }
   }
 });
 </script>

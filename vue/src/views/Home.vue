@@ -51,14 +51,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style scoped>
-ion-datetime.custom::part(text),
-ion-datetime.custom::part(placeholder) {
-  font-weight: 700;
-}
-
-ion-datetime.custom {
-  --placeholder-color: purple;
-}
-</style>

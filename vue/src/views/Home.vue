@@ -44,7 +44,8 @@ import {
   IonItem,
   IonLabel,
   IonDatetime,
-  IonModal
+  IonModal,
+  IonText
 } from '@ionic/vue';
 import { defineComponent, ref } from 'vue';
 import { format, parseISO } from 'date-fns';
@@ -60,7 +61,8 @@ export default defineComponent({
     IonItem,
     IonLabel,
     IonDatetime,
-    IonModal
+    IonModal,
+    IonText
   },
   setup() {
     const formattedDate = ref();
